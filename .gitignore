@@ -1,5 +1,7 @@
 # OSX
 #
+
+yarn.lock
 .DS_Store
 
 # Xcode

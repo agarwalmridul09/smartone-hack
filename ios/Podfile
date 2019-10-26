@@ -1,0 +1,37 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ReactNativeStarter' do
+   pod 'React', :path => '../node_modules/react-native', :subspecs => [
+             'Core',
+             'CxxBridge',
+             'DevSupport',
+             'RCTNetwork'
+             ]
+       # Explicitly include Yoga if you are using RN >= 0.42.0
+       pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+       # Third party deps podspec link
+       pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+       pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+       pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+       pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+    # Third party deps podspec link
+    pod 'react-native-camera', path: '../node_modules/react-native-camera'
+
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
+end

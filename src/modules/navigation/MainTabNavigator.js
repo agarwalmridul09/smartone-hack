@@ -1,15 +1,14 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { Image, View, StyleSheet, Text } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {createBottomTabNavigator} from 'react-navigation';
 
-import { colors, fonts } from '../../styles';
+import {colors, fonts} from '../../styles';
 
 import HomeScreen from '../home/HomeViewContainer';
-import CalendarScreen from '../calendar/CalendarViewContainer';
-import GridsScreen from '../grids/GridsViewContainer';
-import PagesScreen from '../pages/PagesViewContainer';
 import ComponentsScreen from '../components/ComponentsViewContainer';
+import GalleryScreen from "../gallery/GalleryViewContainer";
+import Profile from "../../Profile";
 
 const iconHome = require('../../../assets/images/tabbar/home.png');
 const iconCalendar = require('../../../assets/images/tabbar/calendar.png');
@@ -17,7 +16,7 @@ const iconGrids = require('../../../assets/images/tabbar/grids.png');
 const iconPages = require('../../../assets/images/tabbar/pages.png');
 const iconComponents = require('../../../assets/images/tabbar/components.png');
 
-const hederBackground = require('../../../assets/images/topBarBg.png');
+const hederBackground = require('../../../assets/images/background.png');
 
 const styles = StyleSheet.create({
   tabBarItemContainer: {
@@ -61,53 +60,58 @@ export default createBottomTabNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
+        title: 'Collaborate',
+
+        tabBarVisible: false,
         header: null,
       },
     },
-    Calendar: {
-      screen: CalendarScreen,
+    // Calendar: {
+    //   screen: CalendarScreen,
+    //   navigationOptions: {
+    //     header: (
+    //       <View style={styles.headerContainer}>
+    //         <Image style={styles.headerImage} source={hederBackground} />
+    //         <Text style={styles.headerCaption}>Calendar</Text>
+    //       </View>
+    //     ),
+    //   },
+    // },
+    Gallery: {
+      screen: GalleryScreen,
       navigationOptions: {
-        header: (
-          <View style={styles.headerContainer}>
-            <Image style={styles.headerImage} source={hederBackground} />
-            <Text style={styles.headerCaption}>Calendar</Text>
-          </View>
-        ),
+        title: 'Collaborate',
       },
     },
-    Grids: {
-      screen: GridsScreen,
+    Profile: {
+      screen: Profile,
       navigationOptions: {
-        header: (
-          <View style={styles.headerContainer}>
-            <Image style={styles.headerImage} source={hederBackground} />
-            <Text style={styles.headerCaption}>Grids</Text>
-          </View>
-        ),
+        title: 'Profile',
       },
     },
-    Pages: {
-      screen: PagesScreen,
-      navigationOptions: {
-        header: (
-          <View style={styles.headerContainer}>
-            <Image style={styles.headerImage} source={hederBackground} />
-            <Text style={styles.headerCaption}>Pages</Text>
-          </View>
-        ),
-      },
-    },
-    Components: {
-      screen: ComponentsScreen,
-      navigationOptions: {
-        header: (
-          <View style={styles.headerContainer}>
-            <Image style={styles.headerImage} source={hederBackground} />
-            <Text style={styles.headerCaption}>Components</Text>
-          </View>
-        ),
-      },
-    },
+    // Pages: {
+    //   screen: PagesScreen,
+    //   navigationOptions: {
+    //     header: (
+    //       <View style={styles.headerContainer}>
+    //         <Image style={styles.headerImage} source={hederBackground} />
+    //         <Text style={styles.headerCaption}>Pages</Text>
+    //       </View>
+    //     ),
+    //   },
+    // },
+
+    // Components: {
+    //   screen: ComponentsScreen,
+    //   navigationOptions: {
+    //     header: (
+    //       <View style={styles.headerContainer}>
+    //         <Image style={styles.headerImage} source={hederBackground} />
+    //         <Text style={styles.headerCaption}>Components</Text>
+    //       </View>
+    //     ),
+    //   },
+    // },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -130,6 +134,9 @@ export default createBottomTabNavigator(
             break;
           case 'Components':
             iconSource = iconComponents;
+            break;
+          case 'Gallery':
+            iconSource = iconCalendar;
             break;
           default:
             iconSource = iconComponents;
@@ -158,6 +165,6 @@ export default createBottomTabNavigator(
       labelStyle: {
         color: colors.grey,
       },
-    },
+    }
   },
 );

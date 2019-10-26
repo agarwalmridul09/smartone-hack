@@ -1,10 +1,13 @@
 import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 
-import GalleryScreen from '../gallery/GalleryViewContainer';
+import {colors, fonts} from '../../styles';
+import Login from "../Login";
+import Chat from "../../Chat";
+import SelectCollaboration from "../SelectCollaboration";
 
 // To use this screens please see the full version at https://reactnativestarter.com
 // import ProfileScreen from '../containers/ProfileScreen';
@@ -13,67 +16,52 @@ import GalleryScreen from '../gallery/GalleryViewContainer';
 // import MessagesScreen from '../containers/chat/MessagesScreen';
 // import ChartsScreen from '../containers/ChartsScreen';
 
-import AvailableInFullVersion from '../availableInFullVersion/AvailableInFullVersionViewContainer';
-
-import { colors, fonts } from '../../styles';
-
-const headerBackground = require('../../../assets/images/topBarBg.png');
+const headerBackground = require('../../../assets/images/background.png');
 
 const stackNavigator = createStackNavigator(
   {
+    Login: {
+      screen: Login,
+        navigationOptions: () => ({
+            header: null
+        }),
+    },
+      Collaborate: {
+          screen: SelectCollaboration,
+          navigationOptions: {
+              tabBarVisible : false,
+              header: null
+          },
+      },
+      Chat: {
+      screen: Chat,
+          navigationOptions: () => ({
+              title: 'Dine 99',
+              headerBackground: (
+                  <Image
+                      style={{flex: 1}}
+                      source={headerBackground}
+                      resizeMode="cover"
+                  />
+              ),
+          }),
+    },
     Main: {
       screen: MainTabNavigator,
       navigationOptions: () => ({
-        title: 'React Native Starter',
-        headerLeft: null,
+          title: 'Dine 99',
         headerBackground: (
-          <Image
-            style={{ flex: 1 }}
-            source={headerBackground}
-            resizeMode="cover"
-          />
+            <Image
+                style={{flex: 1}}
+                source={headerBackground}
+                resizeMode="cover"
+            />
         ),
       }),
     },
-    Profile: {
-      screen: AvailableInFullVersion,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    Gallery: {
-      screen: GalleryScreen,
-      navigationOptions: {
-        title: 'Gallery',
-      },
-    },
-    Article: {
-      screen: AvailableInFullVersion,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    Chat: {
-      screen: AvailableInFullVersion,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    Messages: {
-      screen: AvailableInFullVersion,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    Charts: {
-      screen: AvailableInFullVersion,
-      navigationOptions: {
-        header: null,
-      },
-    },
   },
   {
-    defaultNavigationOptions: () => ({
+    defaultNavigationOptions: ({navigation}) => ({
       titleStyle: {
         fontFamily: fonts.primaryLight,
       },
@@ -81,13 +69,6 @@ const stackNavigator = createStackNavigator(
         backgroundColor: colors.primary,
         borderBottomWidth: 0,
       },
-      headerBackground: (
-        <Image
-          style={{ flex: 1 }}
-          source={headerBackground}
-          resizeMode="cover"
-        />
-      ),
       headerTitleStyle: {
         color: colors.white,
         fontFamily: fonts.primaryRegular,
@@ -95,7 +76,7 @@ const stackNavigator = createStackNavigator(
       headerTintColor: '#222222',
       headerLeft: props => (
         <TouchableOpacity
-          onPress={props.onPress}
+          onPress={(e)=>navigation.navigate('Collaborate')}
           style={{
             paddingLeft: 25,
           }}

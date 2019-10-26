@@ -26,7 +26,7 @@ const RNSTextInput = ({
         style={finalStyle}
       />
       {Platform.OS === 'ios' && (
-        <View style={{ height: 0.5, backgroundColor: 'white' }} />
+        <View style={{ height: 2, backgroundColor: 'white' }} />
       )}
     </View>
   );
@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
   default: {
     height: HEIGHT,
     color: 'white',
+    fontWeight: "700",
+    fontSize: 16,
     fontFamily: fonts.primaryRegular,
     ...Platform.select({
       android: {
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     borderColor: colors.lightGray,
     borderRadius: 20,
     paddingHorizontal: 20,
+
   },
   dark: {
     color: colors.gray,

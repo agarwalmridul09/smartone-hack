@@ -1,5 +1,14 @@
 import React from 'react';
-import {FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 import {colors} from '../../styles';
 import fonts from "../../styles/fonts";
@@ -51,7 +60,7 @@ export default function GalleryScreen(props) {
   };
 
   if (props.isLoading) {
-    return (<Text>ABc</Text>)
+    return (<ActivityIndicator/>)
   } else {
     return (
         <View

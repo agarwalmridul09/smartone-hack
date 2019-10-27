@@ -4,6 +4,8 @@
 yarn.lock
 .DS_Store
 
+backend/node_modules
+
 # Xcode
 #
 ios/build/
